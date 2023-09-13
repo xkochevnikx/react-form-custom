@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/xkochevnikx/react-form-custom#readme",
     "dependencies": {
+        "@headlessui/react": "^1.7.17",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -33,10 +34,10 @@
         "eslint": "^8.49.0",
         "eslint-plugin-react": "^7.33.2",
         "html-webpack-plugin": "^5.5.3",
+        "husky": "^8.0.0",
         "style-loader": "^3.3.3",
         "webpack": "^5.88.2",
         "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^4.15.1",
-        "husky": "^8.0.0"
+        "webpack-dev-server": "^4.15.1"
     }
 }

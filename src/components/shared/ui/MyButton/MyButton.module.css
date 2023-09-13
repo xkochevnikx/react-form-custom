@@ -1,0 +1,12 @@
+.MyButton {
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.MyButton:active {
+    top: 1px;
+}

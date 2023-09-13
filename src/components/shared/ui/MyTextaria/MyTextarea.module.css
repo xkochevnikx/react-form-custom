@@ -1,0 +1,15 @@
+.MyTextarea {
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+    resize: vertical;
+    max-height: 150px;
+}
+
+.MyTextarea:focus {
+    outline: none;
+}
+
+.MyTextarea:focus::placeholder {
+    color: transparent;
+}

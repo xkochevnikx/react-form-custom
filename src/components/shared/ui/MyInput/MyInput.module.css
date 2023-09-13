@@ -1,0 +1,13 @@
+.myInput {
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.myInput:focus {
+    outline: none;
+}
+
+.myInput:focus::placeholder {
+    color: transparent;
+}

@@ -1,0 +1,22 @@
+.listButton {
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+    background: transparent;
+}
+
+.listItem {
+    padding: 10px;
+    background: transparent;
+    list-style: none;
+}
+
+.listItemBox {
+    border: 1px solid black;
+    position: relative;
+    bottom: 10px;
+}
+
+.active {
+    background-color: rgba(128, 128, 128, 0.2);
+}
