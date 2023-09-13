@@ -15,15 +15,12 @@ module.exports = {
             },
         },
     ],
+    ignorePatterns: ['**/build/*.js', 'webpack.config.js'],
+
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
     plugins: ['react'],
     rules: {},
-    settings: {
-        react: {
-            version: 'detect',
-        },
-    },
 };
