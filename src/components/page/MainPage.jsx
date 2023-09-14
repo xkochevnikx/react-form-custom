@@ -20,7 +20,7 @@ export const MainPage = () => {
             {isOpenModal && (
                 <ModalUserForm
                     onToggleModal={onToggleModal}
-                    isOpenModal={isOpenModal}
+                    isOpen={isOpenModal}
                 />
             )}
         </div>
