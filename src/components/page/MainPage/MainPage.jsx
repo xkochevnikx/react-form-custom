@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cls from './MainPage.module.css';
-import { MyButton } from '../shared/ui/MyButton/MyButton';
-import { ModalUserForm } from '../features/ModalUserForm/ui/ModalUserForm';
+import { MyButton } from '../../shared/ui/MyButton/MyButton';
+import { ModalUserForm } from '../../features/ModalUserForm/ui/ModalUserForm';
 
 export const MainPage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);

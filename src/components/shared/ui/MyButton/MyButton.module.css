@@ -1,9 +1,8 @@
-.MyButton,
-.white {
+.MyButton {
     background: transparent;
     cursor: pointer;
     position: relative;
-    padding: 20px;
+    padding: 16px;
     border-radius: 3px;
     border: 1px solid black;
     font-size: 1rem;

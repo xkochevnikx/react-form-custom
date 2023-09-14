@@ -1,14 +1,14 @@
-.myInput {
-    padding: 20px;
+.MyInput {
+    padding: 16px;
     border-radius: 3px;
     border: 1px solid black;
     font-size: 1rem;
 }
 
-.myInput:focus {
+.MyInput:focus {
     outline: none;
 }
 
-.myInput:focus::placeholder {
+.MyInput:focus::placeholder {
     color: transparent;
 }
