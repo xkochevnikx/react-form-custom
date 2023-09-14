@@ -48,7 +48,7 @@ export default {
                                     Boolean(resPath.includes('module')),
                                 localIdentName:
                                     mode === 'development'
-                                        ? '[path][name]__[local]--[hash:base64:3]'
+                                        ? '[path][name]__[local]--[hash:base64:]'
                                         : '[hash:base64:5]',
                             },
                         },
