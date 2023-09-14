@@ -1,9 +1,10 @@
 .MyTextarea {
-    padding: 10px;
+    padding: 20px;
     border-radius: 3px;
     border: 1px solid black;
     resize: vertical;
     max-height: 150px;
+    font-size: 1rem;
 }
 
 .MyTextarea:focus {

@@ -1,7 +1,8 @@
 .myInput {
-    padding: 10px;
+    padding: 20px;
     border-radius: 3px;
     border: 1px solid black;
+    font-size: 1rem;
 }
 
 .myInput:focus {

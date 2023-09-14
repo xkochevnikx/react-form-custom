@@ -26,7 +26,7 @@ const UserForm = (props) => {
     const email = useValue({ isEmail: true });
     return (
         <div className={cls.wrapper}>
-            <h2>React Form</h2>
+            <h1>React Form</h1>
             <form action="">
                 <MyInput
                     type="text"

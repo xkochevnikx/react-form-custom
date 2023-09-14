@@ -14,12 +14,9 @@ export const Modal = (props) => {
 
     return (
         <Portal>
-            <div className={isOpen ? cls.ModalOpen : cls.Modal}>
+            <div className={isOpen && cls.ModalOpen}>
                 <div className={cls.overlay} onClick={closeHandler}>
-                    <div
-                        className={isOpen ? cls.contentOpen : cls.content}
-                        onClick={onContentClick}
-                    >
+                    <div className={cls.content} onClick={onContentClick}>
                         {children}
                     </div>
                 </div>
