@@ -7,7 +7,8 @@ import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
 import cls from './UserForm.module.css';
 
-const UserForm = () => {
+export const UserForm = (props) => {
+    const { onClose } = props;
     const [selectedService, setSelectedService] = useState(services[0]);
 
     const [comment, setComment] = useState('');
@@ -72,5 +73,3 @@ const UserForm = () => {
         </div>
     );
 };
-
-export default UserForm;

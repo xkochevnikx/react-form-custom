@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { UserFormAsync } from '../../UserForm/ui/UserForm.async';
+import { Modal } from '../../../shared/ui/Modal/Modal';
 
-const ModalUserForm = (props) => {
+export const ModalUserForm = (props) => {
     const { isOpen, onToggleModal } = props;
 
-    return <div>modalUserForm</div>;
+    return (
+        <Modal onClose={onToggleModal} isOpen={isOpen}>
+            <Suspense fallback="">
+                <UserFormAsync onClose={onToggleModal} />
+            </Suspense>
+        </Modal>
+    );
 };
-
-export default ModalUserForm;
