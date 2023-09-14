@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Consolas;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.navbar {
+    width: 100%;
+    height: 100px;
+    background-color: #546583;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}

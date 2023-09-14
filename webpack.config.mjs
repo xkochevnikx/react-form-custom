@@ -21,7 +21,7 @@ export default {
     },
 
     devServer: {
-        port: 3000,
+        port: 4000,
     },
 
     module: {
@@ -48,7 +48,7 @@ export default {
                                     Boolean(resPath.includes('module')),
                                 localIdentName:
                                     mode === 'development'
-                                        ? '[path][name]__[local]--[hash:base64:]'
+                                        ? '[name]__[local]--[hash:base64:4]'
                                         : '[hash:base64:5]',
                             },
                         },

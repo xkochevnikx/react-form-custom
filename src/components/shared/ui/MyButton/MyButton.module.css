@@ -1,4 +1,5 @@
-.MyButton {
+.MyButton,
+.white {
     background: transparent;
     cursor: pointer;
     position: relative;
@@ -9,4 +10,9 @@
 
 .MyButton:active {
     top: 1px;
+}
+
+.white {
+    border: 1px solid white;
+    color: white;
 }
