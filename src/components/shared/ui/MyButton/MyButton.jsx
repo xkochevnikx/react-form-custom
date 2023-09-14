@@ -1,7 +1,6 @@
-import React from 'react';
 import cls from './MyButton.module.css';
 
-const MyButton = (props) => {
+export const MyButton = (props) => {
     const { type = 'submit', disabled, children, white, ...otherProps } = props;
     return (
         <button
@@ -14,5 +13,3 @@ const MyButton = (props) => {
         </button>
     );
 };
-
-export default MyButton;

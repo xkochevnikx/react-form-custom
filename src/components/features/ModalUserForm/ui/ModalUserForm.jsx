@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { UserFormAsync } from '../../UserForm/ui/UserForm.async';
 import { Modal } from '../../../shared/ui/Modal/Modal';
 

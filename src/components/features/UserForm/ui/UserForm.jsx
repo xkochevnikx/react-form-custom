@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MyInput } from '../../../shared/ui/MyInput/MyInput';
 import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
-import MyButton from '../../../shared/ui/MyButton/MyButton';
+import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
 import cls from './UserForm.module.css';

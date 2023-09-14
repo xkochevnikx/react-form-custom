@@ -1,4 +1,3 @@
-import React from 'react';
 import cls from './MyTextarea.module.css';
 
 export function MyTextarea(props) {
