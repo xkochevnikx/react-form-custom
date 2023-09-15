@@ -23,8 +23,10 @@
     "homepage": "https://github.com/xkochevnikx/react-form-custom#readme",
     "dependencies": {
         "@headlessui/react": "^1.7.17",
+        "@reduxjs/toolkit": "^1.9.5",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.1.2"
     },
     "devDependencies": {
         "@babel/core": "^7.22.17",
@@ -36,6 +38,7 @@
         "eslint-plugin-react": "^7.33.2",
         "html-webpack-plugin": "^5.5.3",
         "husky": "^8.0.0",
+        "json-server": "^0.17.3",
         "mini-css-extract-plugin": "^2.7.6",
         "style-loader": "^3.3.3",
         "webpack": "^5.88.2",

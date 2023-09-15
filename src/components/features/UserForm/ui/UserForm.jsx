@@ -5,6 +5,7 @@ import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
 import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
+import { usePostUsersFormMutation } from '../../../shared/api/rtkApi';
 import cls from './UserForm.module.css';
 
 const UserForm = (props) => {
@@ -13,13 +14,21 @@ const UserForm = (props) => {
 
     const [comment, setComment] = useState('');
 
+    const [postFormUser, { isLoading }] = usePostUsersFormMutation();
+
+    const handlerFormPost = async (event) => {
+        event.preventDefault();
+        await postFormUser({ comment }).unwrap();
+        if (!isLoading) {
+            onClose();
+        }
+    };
+
     const onComment = (e) => {
         setComment(e.target.value);
     };
 
     const name = useValue({ isEmpty: 3, isName: true });
-
-    console.log(name);
 
     const password = useValue({ isEmpty: 5 });
 
@@ -66,7 +75,7 @@ const UserForm = (props) => {
                     rows="5"
                 ></MyTextarea>
 
-                <MyButton type="submit" disabled>
+                <MyButton onClick={(e) => handlerFormPost(e)} type="submit">
                     Отправить
                 </MyButton>
             </form>
