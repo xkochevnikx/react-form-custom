@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -11,8 +12,18 @@ export default {
     entry: './src/index.jsx',
     output: {
         path: path.resolve('./build'),
-        filename: '[name].[hash].js',
+        filename: '[name].[hash:3].js',
+        asyncChunks: true,
+        chunkFilename: '[id].js',
         clean: true,
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+            }),
+        ],
     },
 
     resolve: {
