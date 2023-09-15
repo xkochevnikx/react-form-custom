@@ -5,11 +5,12 @@ import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
 import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
-import { usePostUsersFormMutation } from '../../../shared/api/rtkApi';
+import { usePostUsersFormMutation } from '../modal/UsersFormApi';
 import cls from './UserForm.module.css';
 
 const UserForm = (props) => {
     const { onClose } = props;
+
     const [selectedService, setSelectedService] = useState(services[0]);
 
     const [comment, setComment] = useState('');
@@ -18,7 +19,7 @@ const UserForm = (props) => {
 
     const handlerFormPost = async (event) => {
         event.preventDefault();
-        await postFormUser({ comment }).unwrap();
+        await postFormUser({ comment });
         if (!isLoading) {
             onClose();
         }

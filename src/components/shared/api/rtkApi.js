@@ -5,15 +5,5 @@ export const formApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3000/',
     }),
-    endpoints: (build) => ({
-        postUsersForm: build.mutation({
-            query: (body) => ({
-                url: '/users',
-                method: 'POST',
-                body,
-            }),
-        }),
-    }),
+    endpoints: (builder) => ({}),
 });
-
-export const { usePostUsersFormMutation } = formApi;
