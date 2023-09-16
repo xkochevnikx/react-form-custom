@@ -32,7 +32,7 @@ const UserForm = (props) => {
 
     const handlerFormPost = async (event) => {
         event.preventDefault();
-        await postFormUser({ comment });
+        await postFormUser();
         if (!isLoading) {
             onClose();
         }
@@ -79,8 +79,8 @@ const UserForm = (props) => {
                 />
 
                 <MyTextarea
-                    value={comment}
-                    onChange={(e) => onComment(e)}
+                    value={''}
+                    // onChange={(e) => onComment(e)}
                     placeholder="Напишите детали"
                     cols="30"
                     rows="5"
