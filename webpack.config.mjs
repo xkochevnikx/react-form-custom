@@ -16,6 +16,8 @@ export default {
         filename: '[name].js',
         asyncChunks: true,
         chunkFilename: '[id].js',
+        assetModuleFilename: 'assets/[name][ext]',
+
         clean: true,
     },
     optimization: {
