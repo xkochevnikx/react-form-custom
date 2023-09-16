@@ -3,6 +3,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -12,13 +13,12 @@ export default {
     entry: './src/index.jsx',
     output: {
         path: path.resolve('./build'),
-        filename: '[name].[hash:3].js',
+        filename: '[name].js',
         asyncChunks: true,
         chunkFilename: '[id].js',
         clean: true,
     },
     optimization: {
-        minimize: true,
         minimizer: [
             new TerserPlugin({
                 extractComments: false,
@@ -42,6 +42,9 @@ export default {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+                    },
                 },
             },
             {
@@ -64,6 +67,14 @@ export default {
                             },
                         },
                     },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: ['postcss-preset-env'],
+                            },
+                        },
+                    },
                 ],
             },
         ],
@@ -82,6 +93,9 @@ export default {
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
+        }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
         }),
     ],
 };
