@@ -1,5 +1,6 @@
 import cls from './Modal.module.css';
 import { Portal } from '../Portal/Portal';
+import { useModal } from '../../hooks/useModal';
 
 export const Modal = (props) => {
     const { children, onClose, isOpen } = props;
@@ -11,6 +12,11 @@ export const Modal = (props) => {
     const onContentClick = (e) => {
         e.stopPropagation();
     };
+
+    useModal({
+        isOpen,
+        onClose,
+    });
 
     return (
         <Portal>

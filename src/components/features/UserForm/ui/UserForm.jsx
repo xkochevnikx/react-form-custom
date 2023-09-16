@@ -34,6 +34,7 @@ const UserForm = (props) => {
     const password = useValue({ isEmpty: 5 });
 
     const email = useValue({ isEmail: true });
+
     return (
         <div className={cls.wrapper}>
             <h1>React Form</h1>
