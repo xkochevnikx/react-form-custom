@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MyInput } from '../../../shared/ui/MyInput/MyInput';
 import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
@@ -7,13 +7,26 @@ import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
 import { usePostUsersFormMutation } from '../modal/UsersFormApi';
 import cls from './UserForm.module.css';
+import { userFormSliceReducer } from '../modal/userFormSlice';
+import { useDispatch, useStore } from 'react-redux';
 
 const UserForm = (props) => {
     const { onClose } = props;
 
+    const dispatch = useDispatch();
+
     const [selectedService, setSelectedService] = useState(services[0]);
 
-    const [comment, setComment] = useState('');
+    const store = useStore();
+
+    useEffect(() => {
+        store.reducerManager.add('userFormSlice', userFormSliceReducer);
+        dispatch({ type: '@init userFormSliceReducer' });
+        return () => {
+            store.reducerManager.remove('userFormSlice');
+            dispatch({ type: '@remove userFormSliceReducer' });
+        };
+    }, [store, dispatch]);
 
     const [postFormUser, { isLoading }] = usePostUsersFormMutation();
 
@@ -23,10 +36,6 @@ const UserForm = (props) => {
         if (!isLoading) {
             onClose();
         }
-    };
-
-    const onComment = (e) => {
-        setComment(e.target.value);
     };
 
     const name = useValue({ isEmpty: 3, isName: true });

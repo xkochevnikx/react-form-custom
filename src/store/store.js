@@ -1,10 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { formApi } from '../components/shared/api/rtkApi';
+import { createReducerManager } from './reducerManager';
 
-export const store = configureStore({
-    reducer: {
+function createReduxStore() {
+    const staticReducers = {
         [formApi.reducerPath]: formApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(formApi.middleware),
-});
+    };
+
+    const reducerManager = createReducerManager(staticReducers);
+
+    const store = configureStore({
+        reducer: reducerManager.reduce,
+
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(formApi.middleware),
+    });
+
+    store.reducerManager = reducerManager;
+
+    return store;
+}
+
+export const store = createReduxStore();
