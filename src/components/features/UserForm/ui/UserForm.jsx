@@ -3,16 +3,18 @@ import { MyInput } from '../../../shared/ui/MyInput/MyInput';
 import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
 import { MyButton } from '../../../shared/ui/MyButton/MyButton';
-import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
 // import { usePostUsersFormMutation } from '../modal/UsersFormApi';
 import { userFormSliceReducer } from '../modal/userFormSlice';
 import { useDispatch } from 'react-redux';
 import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
 import cls from './UserForm.module.css';
+import { useValidationName } from '../../../shared/helpers/useValidationName';
+import { useValidationPhone } from '../../../shared/helpers/useValidationPhone';
+import { useValidationEmail } from '../../../shared/helpers/useValidationEmail';
 
 const UserForm = (props) => {
-    console.log('монтируем');
+    console.log('монтируем UserForm');
     const { onClose } = props;
 
     const dispatch = useDispatch();
@@ -31,50 +33,11 @@ const UserForm = (props) => {
         event.preventDefault();
     }, []);
 
-    //!name
-    const name = useValue({ isEmpty: 3, isName: true });
-    const getName = useCallback(
-        (e) => {
-            name.onValue(e);
-        },
-        [name]
-    );
-    const getBlurName = useCallback(
-        (e) => {
-            name.onBlur(e);
-        },
-        [name]
-    );
+    const { name, getName, getBlurName } = useValidationName();
 
-    //!phone
-    const phone = useValue({ isPhone: true });
-    const getPhone = useCallback(
-        (e) => {
-            phone.onValue(e);
-        },
-        [phone]
-    );
-    const getBlurPhone = useCallback(
-        (e) => {
-            phone.onBlur(e);
-        },
-        [phone]
-    );
+    const { phone, getPhone, getBlurPhone } = useValidationPhone();
 
-    //! email
-    const email = useValue({ isEmail: true });
-    const getEmail = useCallback(
-        (e) => {
-            email.onValue(e);
-        },
-        [email]
-    );
-    const getBlurEmail = useCallback(
-        (e) => {
-            email.onBlur(e);
-        },
-        [email]
-    );
+    const { email, getEmail, getBlurEmail } = useValidationEmail();
 
     return (
         <div className={cls.wrapper}>
