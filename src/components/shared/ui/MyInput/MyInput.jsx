@@ -1,5 +1,6 @@
 import cls from './MyInput.module.css';
+import { memo } from 'react';
 
-export function MyInput(props) {
+export const MyInput = memo((props) => {
     return <input className={cls.MyInput} {...props} />;
-}
+});

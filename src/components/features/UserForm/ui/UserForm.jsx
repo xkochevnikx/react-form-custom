@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { MyInput } from '../../../shared/ui/MyInput/MyInput';
 import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
 import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
-import { usePostUsersFormMutation } from '../modal/UsersFormApi';
+// import { usePostUsersFormMutation } from '../modal/UsersFormApi';
 import { userFormSliceReducer } from '../modal/userFormSlice';
 import { useDispatch } from 'react-redux';
 import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
 import cls from './UserForm.module.css';
 
 const UserForm = (props) => {
+    console.log('монтируем');
     const { onClose } = props;
 
     const dispatch = useDispatch();
@@ -23,21 +24,57 @@ const UserForm = (props) => {
         reducer: userFormSliceReducer,
     });
 
-    const [postFormUser, { isLoading }] = usePostUsersFormMutation();
+    // const [postFormUser] = usePostUsersFormMutation();
 
-    const handlerFormPost = async (event) => {
+    const handlerFormPost = useCallback((event) => {
+        console.log('Отправка данных на бэк');
         event.preventDefault();
-        await postFormUser();
-        if (!isLoading) {
-            onClose();
-        }
-    };
+    }, []);
 
+    //!name
     const name = useValue({ isEmpty: 3, isName: true });
+    const getName = useCallback(
+        (e) => {
+            name.onValue(e);
+        },
+        [name]
+    );
+    const getBlurName = useCallback(
+        (e) => {
+            name.onBlur(e);
+        },
+        [name]
+    );
 
-    const password = useValue({ isEmpty: 5 });
+    //!phone
+    const phone = useValue({ isPhone: true });
+    const getPhone = useCallback(
+        (e) => {
+            phone.onValue(e);
+        },
+        [phone]
+    );
+    const getBlurPhone = useCallback(
+        (e) => {
+            phone.onBlur(e);
+        },
+        [phone]
+    );
 
+    //! email
     const email = useValue({ isEmail: true });
+    const getEmail = useCallback(
+        (e) => {
+            email.onValue(e);
+        },
+        [email]
+    );
+    const getBlurEmail = useCallback(
+        (e) => {
+            email.onBlur(e);
+        },
+        [email]
+    );
 
     return (
         <div className={cls.wrapper}>
@@ -46,33 +83,29 @@ const UserForm = (props) => {
                 <MyInput
                     type="text"
                     placeholder="Введите Ваше имя"
-                    onChange={(e) => name.onValue(e)}
                     value={name.value}
-                    onBlur={(e) => name.onBlur(e)}
+                    onChange={getName}
+                    onBlur={getBlurName}
                 />
-
                 <MyInput
                     type="tel"
                     placeholder="Введите номер телефона"
-                    value={password.value}
-                    onBlur={(e) => password.onBlur(e)}
-                    onChange={(e) => password.onValue(e)}
+                    value={phone.value}
+                    onChange={getPhone}
+                    onBlur={getBlurPhone}
                 />
-
                 <MyInput
                     type="email"
                     placeholder="Введите вашу почту"
                     value={email.value}
-                    onBlur={(e) => email.onBlur(e)}
-                    onChange={(e) => email.onValue(e)}
+                    onChange={getEmail}
+                    onBlur={getBlurEmail}
                 />
-
                 <MySelect
                     services={services}
                     selectedService={selectedService}
                     setSelectedService={setSelectedService}
                 />
-
                 <MyTextarea
                     // value={''}
                     // onChange={(e) => onComment(e)}
@@ -80,8 +113,7 @@ const UserForm = (props) => {
                     cols="30"
                     rows="5"
                 ></MyTextarea>
-
-                <MyButton onClick={(e) => handlerFormPost(e)} type="submit">
+                <MyButton onClick={handlerFormPost} type="submit">
                     Отправить
                 </MyButton>
             </form>

@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Listbox } from '@headlessui/react';
 import cls from './MySelect.module.css';
 
-export function MySelect(props) {
+export const MySelect = memo((props) => {
     const { selectedService, setSelectedService, services } = props;
     return (
         <Listbox value={selectedService} onChange={setSelectedService}>
@@ -30,4 +30,4 @@ export function MySelect(props) {
             </Listbox.Options>
         </Listbox>
     );
-}
+});

@@ -1,5 +1,6 @@
+import { memo } from 'react';
 import cls from './MyTextarea.module.css';
 
-export function MyTextarea(props) {
+export const MyTextarea = memo((props) => {
     return <textarea className={cls.MyTextarea} {...props} />;
-}
+});

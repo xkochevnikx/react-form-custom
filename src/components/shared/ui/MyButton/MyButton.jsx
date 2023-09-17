@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import cls from './MyButton.module.css';
 
-export const MyButton = (props) => {
-    const { type = 'submit', disabled, children, white, ...otherProps } = props;
+export const MyButton = memo((props) => {
+    const { type = 'button', disabled, children, white, ...otherProps } = props;
     return (
         <button
             className={`${cls.MyButton} ${white && cls.white}`}
@@ -12,4 +13,4 @@ export const MyButton = (props) => {
             {children}
         </button>
     );
-};
+});
