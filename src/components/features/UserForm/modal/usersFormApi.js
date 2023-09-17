@@ -1,4 +1,4 @@
-import { formApi } from '../../../shared/api/rtkApi';
+import { formApi } from '../../../shared/api/formApi';
 
 const usersFormApi = formApi.injectEndpoints({
     endpoints: (build) => ({

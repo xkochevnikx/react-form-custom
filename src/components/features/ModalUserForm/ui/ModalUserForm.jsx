@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { UserFormAsync } from '../../UserForm/ui/UserForm.async';
 import { Modal } from '../../../shared/ui/Modal/Modal';
+import { UserForm } from '../../UserForm/index';
 
 export const ModalUserForm = (props) => {
     const { isOpen, onToggleModal } = props;
@@ -8,7 +8,7 @@ export const ModalUserForm = (props) => {
     return (
         <Modal onClose={onToggleModal} isOpen={isOpen}>
             <Suspense fallback="">
-                <UserFormAsync onClose={onToggleModal} />
+                <UserForm onClose={onToggleModal} />
             </Suspense>
         </Modal>
     );

@@ -6,9 +6,10 @@ import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { useValue } from '../../../shared/hooks/useValue';
 import { services } from '../../../shared/lib/consts/options';
 import { usePostUsersFormMutation } from '../modal/UsersFormApi';
-import cls from './UserForm.module.css';
 import { userFormSliceReducer } from '../modal/userFormSlice';
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
+import cls from './UserForm.module.css';
 
 const UserForm = (props) => {
     const { onClose } = props;
@@ -17,16 +18,10 @@ const UserForm = (props) => {
 
     const [selectedService, setSelectedService] = useState(services[0]);
 
-    const store = useStore();
-
-    useEffect(() => {
-        store.reducerManager.add('userFormSlice', userFormSliceReducer);
-        dispatch({ type: '@init userFormSliceReducer' });
-        return () => {
-            store.reducerManager.remove('userFormSlice');
-            dispatch({ type: '@remove userFormSliceReducer' });
-        };
-    }, [store, dispatch]);
+    useInitialReducer({
+        name: 'userFormSlice',
+        reducer: userFormSliceReducer,
+    });
 
     const [postFormUser, { isLoading }] = usePostUsersFormMutation();
 
@@ -79,7 +74,7 @@ const UserForm = (props) => {
                 />
 
                 <MyTextarea
-                    value={''}
+                    // value={''}
                     // onChange={(e) => onComment(e)}
                     placeholder="Напишите детали"
                     cols="30"

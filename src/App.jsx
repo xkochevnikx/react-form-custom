@@ -1,4 +1,4 @@
-import { MainPage } from './components/page/MainPage/MainPage';
+import { MainPage } from '../src/components/page/MainPage/index';
 
 function App() {
     return (

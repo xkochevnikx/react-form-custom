@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { formApi } from '../components/shared/api/rtkApi';
+import { formApi } from '../components/shared/api/formApi';
 import { createReducerManager } from './reducerManager';
 
-function createReduxStore() {
+const createReduxStore = () => {
     const staticReducers = {
         [formApi.reducerPath]: formApi.reducer,
     };
@@ -19,6 +19,6 @@ function createReduxStore() {
     store.reducerManager = reducerManager;
 
     return store;
-}
+};
 
 export const store = createReduxStore();
