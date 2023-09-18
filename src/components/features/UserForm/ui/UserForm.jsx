@@ -4,20 +4,13 @@ import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
 import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { services } from '../../../shared/lib/consts/options';
-// import { usePostUsersFormMutation } from '../modal/UsersFormApi';
-import { userFormSliceReducer } from '../modal/userFormSlice';
-import { useDispatch } from 'react-redux';
 import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
+import { userFormSliceReducer } from '../modal/slice/userFormSlice';
 import cls from './UserForm.module.css';
-import { useValidationName } from '../../../shared/helpers/useValidationName';
-import { useValidationPhone } from '../../../shared/helpers/useValidationPhone';
-import { useValidationEmail } from '../../../shared/helpers/useValidationEmail';
+import { useValue } from '../../../shared/hooks/useValue';
 
 const UserForm = (props) => {
-    console.log('монтируем UserForm');
     const { onClose } = props;
-
-    const dispatch = useDispatch();
 
     const [selectedService, setSelectedService] = useState(services[0]);
 
@@ -33,11 +26,10 @@ const UserForm = (props) => {
         event.preventDefault();
     }, []);
 
-    const { name, getName, getBlurName } = useValidationName();
-
-    const { phone, getPhone, getBlurPhone } = useValidationPhone();
-
-    const { email, getEmail, getBlurEmail } = useValidationEmail();
+    const [name, onName, onBlurName] = useValue({ isName: true });
+    const [phone, onPhone, onBlurPhone] = useValue({ isPhone: true });
+    const [email, onEmail, onBlurEmail] = useValue({ isEmail: true });
+    const [comment, onComment] = useValue({ isComment: true });
 
     return (
         <div className={cls.wrapper}>
@@ -45,24 +37,28 @@ const UserForm = (props) => {
             <form action="">
                 <MyInput
                     type="text"
+                    name="name"
                     placeholder="Введите Ваше имя"
-                    value={name.value}
-                    onChange={getName}
-                    onBlur={getBlurName}
+                    value={name}
+                    onChange={onName}
+                    onBlur={onBlurName}
                 />
+
                 <MyInput
                     type="tel"
+                    name="phone"
                     placeholder="Введите номер телефона"
-                    value={phone.value}
-                    onChange={getPhone}
-                    onBlur={getBlurPhone}
+                    value={phone}
+                    onChange={onPhone}
+                    onBlur={onBlurPhone}
                 />
                 <MyInput
                     type="email"
+                    name="email"
                     placeholder="Введите вашу почту"
-                    value={email.value}
-                    onChange={getEmail}
-                    onBlur={getBlurEmail}
+                    value={email}
+                    onChange={onEmail}
+                    onBlur={onBlurEmail}
                 />
                 <MySelect
                     services={services}
@@ -70,9 +66,11 @@ const UserForm = (props) => {
                     setSelectedService={setSelectedService}
                 />
                 <MyTextarea
-                    // value={''}
-                    // onChange={(e) => onComment(e)}
+                    type="text"
+                    name="comment"
                     placeholder="Напишите детали"
+                    value={comment}
+                    onChange={onComment}
                     cols="30"
                     rows="5"
                 ></MyTextarea>
