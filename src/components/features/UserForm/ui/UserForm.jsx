@@ -8,6 +8,7 @@ import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
 import { userFormSliceReducer } from '../modal/slice/userFormSlice';
 import cls from './UserForm.module.css';
 import { useValue } from '../../../shared/hooks/useValue';
+import { Text } from '../../../shared/ui/Text/Text';
 
 const UserForm = (props) => {
     const { onClose } = props;
@@ -21,19 +22,22 @@ const UserForm = (props) => {
 
     // const [postFormUser] = usePostUsersFormMutation();
 
-    const handlerFormPost = useCallback((event) => {
+    const handlerFormPost = (event) => {
         console.log('Отправка данных на бэк');
         event.preventDefault();
-    }, []);
+    };
 
-    const [name, onName, onBlurName] = useValue({ isName: true });
+    const [name, onName, onBlurName, blurName, errorName] = useValue({
+        isName: true,
+    });
+
     const [phone, onPhone, onBlurPhone] = useValue({ isPhone: true });
     const [email, onEmail, onBlurEmail] = useValue({ isEmail: true });
     const [comment, onComment] = useValue({ isComment: true });
 
     return (
         <div className={cls.wrapper}>
-            <h1>React Form</h1>
+            <Text title={'React Form'} size={'L'} />
             <form action="">
                 <MyInput
                     type="text"
@@ -42,6 +46,7 @@ const UserForm = (props) => {
                     value={name}
                     onChange={onName}
                     onBlur={onBlurName}
+                    error={errorName}
                 />
 
                 <MyInput

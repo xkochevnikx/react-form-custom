@@ -12,3 +12,9 @@
 .MyInput:focus::placeholder {
     color: transparent;
 }
+
+.error {
+    border: 1px solid red;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(222, 8, 8, 0.4);
+}
