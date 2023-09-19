@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { MyInput } from '../../../shared/ui/MyInput/MyInput';
 import { MySelect } from '../../../shared/ui/MySelect/MySelect';
 import { MyTextarea } from '../../../shared/ui/MyTextaria/MyTextarea';
@@ -9,6 +9,7 @@ import { userFormSliceReducer } from '../modal/slice/userFormSlice';
 import cls from './UserForm.module.css';
 import { useValue } from '../../../shared/hooks/useValue';
 import { Text } from '../../../shared/ui/Text/Text';
+import { usePostUsersFormMutation } from '../modal/api/usersFormApi';
 
 const UserForm = (props) => {
     const { onClose } = props;
@@ -20,51 +21,84 @@ const UserForm = (props) => {
         reducer: userFormSliceReducer,
     });
 
-    // const [postFormUser] = usePostUsersFormMutation();
-
-    const handlerFormPost = (event) => {
-        console.log('Отправка данных на бэк');
-        event.preventDefault();
-    };
-
     const [name, onName, onBlurName, blurName, errorName] = useValue({
         isName: true,
     });
-
-    const [phone, onPhone, onBlurPhone] = useValue({ isPhone: true });
-    const [email, onEmail, onBlurEmail] = useValue({ isEmail: true });
+    const [phone, onPhone, onBlurPhone, blurPhone, errorPhone] = useValue({
+        isPhone: true,
+    });
+    const [email, onEmail, onBlurEmail, blurEmail, errorEmail] = useValue({
+        isEmail: true,
+    });
     const [comment, onComment] = useValue({ isComment: true });
 
+    const canSendForm = !!(errorName || errorPhone || errorEmail);
+
+    const [postFormUser] = usePostUsersFormMutation();
+
+    const handlerFormPost = async (event) => {
+        event.preventDefault();
+        if (!canSendForm) {
+            try {
+                await postFormUser({
+                    name,
+                    phone,
+                    email,
+                    service: selectedService,
+                    comment,
+                });
+                onClose();
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    };
     return (
         <div className={cls.wrapper}>
             <Text title={'React Form'} size={'L'} />
             <form action="">
-                <MyInput
-                    type="text"
-                    name="name"
-                    placeholder="Введите Ваше имя"
-                    value={name}
-                    onChange={onName}
-                    onBlur={onBlurName}
-                    error={errorName}
-                />
-
-                <MyInput
-                    type="tel"
-                    name="phone"
-                    placeholder="Введите номер телефона"
-                    value={phone}
-                    onChange={onPhone}
-                    onBlur={onBlurPhone}
-                />
-                <MyInput
-                    type="email"
-                    name="email"
-                    placeholder="Введите вашу почту"
-                    value={email}
-                    onChange={onEmail}
-                    onBlur={onBlurEmail}
-                />
+                <div className={cls.inputBox}>
+                    {errorName && blurName ? (
+                        <Text title={errorName} size={'S'} error />
+                    ) : null}
+                    <MyInput
+                        type="text"
+                        name="name"
+                        placeholder="Введите Ваше имя"
+                        value={name}
+                        onChange={onName}
+                        onBlur={onBlurName}
+                        error={errorName}
+                    />
+                </div>
+                <div className={cls.inputBox}>
+                    {errorPhone && blurPhone ? (
+                        <Text title={errorPhone} size={'S'} error />
+                    ) : null}
+                    <MyInput
+                        type="tel"
+                        name="phone"
+                        placeholder="Введите номер телефона"
+                        value={phone}
+                        onChange={onPhone}
+                        onBlur={onBlurPhone}
+                        error={errorPhone}
+                    />
+                </div>
+                <div className={cls.inputBox}>
+                    {errorEmail && blurEmail ? (
+                        <Text title={errorEmail} size={'S'} error />
+                    ) : null}
+                    <MyInput
+                        type="email"
+                        name="email"
+                        placeholder="Введите вашу почту"
+                        value={email}
+                        onChange={onEmail}
+                        onBlur={onBlurEmail}
+                        error={errorEmail}
+                    />
+                </div>
                 <MySelect
                     services={services}
                     selectedService={selectedService}
@@ -79,7 +113,11 @@ const UserForm = (props) => {
                     cols="30"
                     rows="5"
                 ></MyTextarea>
-                <MyButton onClick={handlerFormPost} type="submit">
+                <MyButton
+                    onClick={handlerFormPost}
+                    type="submit"
+                    disabled={canSendForm}
+                >
                     Отправить
                 </MyButton>
             </form>

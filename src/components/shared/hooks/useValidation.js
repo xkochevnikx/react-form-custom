@@ -16,8 +16,7 @@ export const useValidation = (value, validations) => {
 
         const PHONE_REGEXP = /((\+7|7|8)+([0-9]){10})$/;
 
-        const EMAIL_REGEXP =
-            /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        const EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,4}$/;
 
         if ('isName' in validations) {
             !NAME_REGEXP.test(value.trim()) && value.length > 0
@@ -31,7 +30,7 @@ export const useValidation = (value, validations) => {
                 : setErrorArray((prev) => '');
         }
         if ('isEmail' in validations) {
-            !EMAIL_REGEXP.test(value.trim()) && value.length > 0
+            !EMAIL_REGEXP.test(value) && value.length > 0
                 ? setErrorArray(mapError['isEmail'])
                 : setErrorArray((prev) => '');
         }
