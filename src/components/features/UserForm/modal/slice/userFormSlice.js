@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ *
+ * @userFormSlice - слайс данных формы
+ */
+
 const initialState = {
     name: '',
     phone: '',

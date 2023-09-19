@@ -2,6 +2,13 @@ import { Suspense } from 'react';
 import { Modal } from '../../../shared/ui/Modal/Modal';
 import { UserForm } from '../../UserForm/index';
 
+/**
+ * Компонент обёртка возвращает модальное окно с ленивым компонентом
+ * @isOpen - флаг состояния открытия модалки
+ * @onToggleModal - функция закрытия окна по средствам изменения состояния флага
+ *
+ */
+
 export const ModalUserForm = (props) => {
     const { isOpen, onToggleModal } = props;
 

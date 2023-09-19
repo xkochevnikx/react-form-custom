@@ -6,10 +6,16 @@ import { MyButton } from '../../../shared/ui/MyButton/MyButton';
 import { services } from '../../../shared/lib/consts/options';
 import { useInitialReducer } from '../../../shared/hooks/useInitialReducer';
 import { userFormSliceReducer } from '../modal/slice/userFormSlice';
-import cls from './UserForm.module.css';
 import { useValue } from '../../../shared/hooks/useValue';
 import { Text } from '../../../shared/ui/Text/Text';
 import { usePostUsersFormMutation } from '../modal/api/usersFormApi';
+import cls from './UserForm.module.css';
+import { useStore } from 'react-redux';
+
+/**
+ * Асинхронная фича @UserForm
+ * @onClose - функция закрытия модалки
+ */
 
 const UserForm = (props) => {
     const { onClose } = props;
@@ -30,22 +36,25 @@ const UserForm = (props) => {
     const [email, onEmail, onBlurEmail, blurEmail, errorEmail] = useValue({
         isEmail: true,
     });
+
     const [comment, onComment] = useValue({ isComment: true });
 
     const canSendForm = !!(errorName || errorPhone || errorEmail);
 
     const [postFormUser] = usePostUsersFormMutation();
 
+    const store = useStore().getState().userFormSlice;
+
     const handlerFormPost = async (event) => {
         event.preventDefault();
         if (!canSendForm) {
             try {
                 await postFormUser({
-                    name,
-                    phone,
-                    email,
+                    name: store.name,
+                    phone: store.phone,
+                    email: store.email,
                     service: selectedService,
-                    comment,
+                    comment: store.comment,
                 });
                 onClose();
             } catch (e) {

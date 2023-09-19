@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
+/**
+ *
+ * @useInitialReducer -  хук содержит логику по покдлючению асинхронного редюсера с помощью rtc reducerManager
+ * @name - название редюсера
+ * @reducer - сам редюсер
+ */
+
 export const useInitialReducer = (props) => {
     const { name, reducer } = props;
     const dispatch = useDispatch();
