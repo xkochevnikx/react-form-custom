@@ -1,5 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
+/**
+ * Редюсер менеджер предоставляющий возможность подключения/отключения асинхронных редюсеров
+ * @initialReducers - объект со статическими редюсерами
+ */
+
 export function createReducerManager(initialReducers) {
     const reducers = { ...initialReducers };
     let combinedReducer = combineReducers(reducers);

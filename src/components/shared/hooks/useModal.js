@@ -1,5 +1,11 @@
 import { useCallback, useEffect } from 'react';
 
+/**
+ * хук предоставляет дполнительный функционал модальному окну по закрытию на 'Escape'
+ * @onClose - функция закрытия модалки
+ * @isOpen - состояние окна
+ */
+
 export const useModal = (props) => {
     const { isOpen, onClose } = props;
 

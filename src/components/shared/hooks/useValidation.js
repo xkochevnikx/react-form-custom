@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 
+/**
+ * хук валидации
+ * @value - строка из инпута
+ * @validation - объект принимаемый на вход по ключу в котором проверка идёт по одной из ругулярок
+ * @mapError - мапер ошибок
+ * @error - возвращаемое хуком наружу состояние с ошибкой
+ */
+
 export const useValidation = (value, validations) => {
     const mapError = useMemo(() => {
         return {
@@ -9,7 +17,7 @@ export const useValidation = (value, validations) => {
         };
     }, []);
 
-    const [errorArray, setErrorArray] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const NAME_REGEXP = /^[а-яА-ЯёЁa-zA-Z]+ ?[а-яА-ЯёЁa-zA-Z]+$/;
@@ -20,21 +28,21 @@ export const useValidation = (value, validations) => {
 
         if ('isName' in validations) {
             !NAME_REGEXP.test(value.trim()) && value.length > 0
-                ? setErrorArray(mapError['isName'])
-                : setErrorArray((prev) => '');
+                ? setError(mapError['isName'])
+                : setError((prev) => '');
         }
 
         if ('isPhone' in validations) {
             !PHONE_REGEXP.test(value.trim()) && value.length > 0
-                ? setErrorArray(mapError['isPhone'])
-                : setErrorArray((prev) => '');
+                ? setError(mapError['isPhone'])
+                : setError((prev) => '');
         }
         if ('isEmail' in validations) {
             !EMAIL_REGEXP.test(value) && value.length > 0
-                ? setErrorArray(mapError['isEmail'])
-                : setErrorArray((prev) => '');
+                ? setError(mapError['isEmail'])
+                : setError((prev) => '');
         }
-    }, [value, validations, errorArray, mapError]);
+    }, [value, validations, error, mapError]);
 
-    return errorArray;
+    return error;
 };

@@ -47,11 +47,11 @@ const UserForm = (props) => {
         if (!canSendForm) {
             try {
                 await postFormUser({
-                    name: store.name,
-                    phone: store.phone,
-                    email: store.email,
+                    name: store?.name,
+                    phone: store?.phone,
+                    email: store?.email,
                     service: selectedService,
-                    comment: store.comment,
+                    comment: store?.comment,
                 });
                 onClose();
             } catch (e) {

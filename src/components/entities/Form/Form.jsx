@@ -7,6 +7,11 @@ import { MyButton } from '../../shared/ui/MyButton/MyButton';
 import { services } from '../../shared/lib/consts/options';
 import cls from './Form.module.css';
 
+/**
+ * сущность формы, глупый компонет, вся логика находиться в фиче выше.
+ * !В процессе рефакторинга
+ */
+
 export const Form = (props) => {
     const {
         name,

@@ -3,6 +3,14 @@ import { useValidation } from './useValidation';
 import { useDispatch } from 'react-redux';
 import { userFormSliceActions } from '../../features/UserForm/modal/slice/userFormSlice';
 
+/**
+ * хук сохраняем и возвращает из себя
+ * @value - строка из инпута которую на каждом событии передаем на валидацию и записываю в одно из полей редюсера
+ * @blur - состояние которое сообщает о том что инпут покинут
+ * @onBlur - обработчик события при потере фокуса меняет состояние blur
+ * @onValue - обработчик события записывающий состояние инпута локально и по условию заданному в объекте снаружи обновляет одно из полей редюсера
+ */
+
 export const useValue = (validations) => {
     const [blur, setBlur] = useState(false);
     const [value, setValue] = useState('');

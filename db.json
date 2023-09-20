@@ -1,16 +1,3 @@
 {
-  "users": [
-    {
-      "name": " ыы",
-      "phone": "",
-      "email": "",
-      "service": {
-        "id": 1,
-        "name": "Выберите услугу из списка",
-        "unavailable": true
-      },
-      "comment": " ",
-      "id": 1
-    }
-  ]
+    "users": []
 }
