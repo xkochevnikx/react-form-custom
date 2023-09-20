@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 /**
+ * @createReducerManager
  * Редюсер менеджер предоставляющий возможность подключения/отключения асинхронных редюсеров
  * @initialReducers - объект со статическими редюсерами
  */

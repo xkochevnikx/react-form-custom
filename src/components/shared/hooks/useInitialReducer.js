@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
 /**
- *
- * @useInitialReducer -  хук содержит логику по покдлючению асинхронного редюсера с помощью rtc reducerManager
+ * @useInitialReducer -  хук содержит логику по покдлючению асинхронного редюсера в момент монтирвания ленивого компонета с помощью rtc reducerManager
  * @name - название редюсера
  * @reducer - сам редюсер
  */

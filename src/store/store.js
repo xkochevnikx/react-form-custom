@@ -3,8 +3,9 @@ import { formApi } from '../components/shared/api/formApi';
 import { createReducerManager } from './reducerManager';
 
 /**
+ * @createReduxStore
  * функция возвращает глобальный стор
- * Редюсер менеджер предоставляющий возможность подключения/отключения асинхронных редюсеров
+ * Редюсер менеджер предоставляет возможность подключения/отключения асинхронных редюсеров
  *
  */
 const createReduxStore = () => {

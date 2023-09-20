@@ -1,7 +1,8 @@
 import { formApi } from '../../../../shared/api/formApi';
 
 /**
- * асинхронный эндпоинт отправки данных на сервер монтируется с помощью injectEndpoints
+ * @usersFormApi
+ * асинхронный эндпоинт по отправке данных на сервер, монтируется с помощью injectEndpoints
  * @usePostUsersFormMutation - возвращаемый хук наружу в тело компонента
  */
 

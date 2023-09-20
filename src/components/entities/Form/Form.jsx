@@ -8,6 +8,7 @@ import { services } from '../../shared/lib/consts/options';
 import cls from './Form.module.css';
 
 /**
+ * @Form
  * сущность формы, глупый компонет, вся логика находиться в фиче выше.
  * !В процессе рефакторинга
  */
