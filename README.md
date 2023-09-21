@@ -45,7 +45,10 @@ npm run lint - проверка js файлов линтером
 ```
 
 ---
-### Демонтсрация интерфейса
+### Демонтстрация интерфейса и анализ размера чанков. 
+На первом скриншоте 'main.js' главный чанк и асинхронный '336.js'.
+На втором компонент вмонтирован.
+На третьем показан пример взаимодейтсвия с пользователем при не валидно заполненных полях, сперва идет оповещение цветом а при потере фокуса добавляется сообщение о том что не так.
 
 | <img src="https://github.com/xkochevnikx/react-form-custom/blob/master/demonstrationImage/demonstration_1.png" width="400"/> | <img src="https://github.com/xkochevnikx/react-form-custom/blob/master/demonstrationImage/demonstration_2.png" width="400"/> |
 
