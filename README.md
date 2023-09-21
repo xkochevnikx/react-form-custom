@@ -5,7 +5,7 @@
 -   В коде функций есть комментарии JSDoc.
 
 ---
-### Технологии
+### Технологии и библиотеки
 
 -   React
 -   Webpack
@@ -13,6 +13,7 @@
 -   Babel
 -   Redux toolkit/rtk query
 -   Json server
+-   headless ui
 
 ---
 ### Сборка и настройка среды 
